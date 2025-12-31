@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'admin/img/apple-icon.png' %}">
+  <link rel="icon" type="image/png" href="{% static 'admin/img/favicon.png' %}">
+  <title>
+    Upload-Vechile Registartion
+  </title>
+  <style>
+   
+   hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+    input[type=text], input[type=password],input[type=tel], input[type=email] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
+  
+    input[type=text]:focus, input[type=password]:focus,input[type=tel]:focus, input[type=email]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+    .select{
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
+
+
+
+    .registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+    </style>
+   
+
+
+  
+
+
+  <!-- Bootstrap (for style only) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    label { font-weight: bold; }
+  </style>
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <!-- Nucleo Icons -->
+  <link href="{% static 'admin/css/nucleo-icons.css' %}" rel="stylesheet" />
+  <link href="{% static 'admin/css/upload.css' %}" rel="stylesheet" />
+  <link href="{% static 'admin/css/select.css' %}" rel="stylesheet" />
+  <link href="{% static 'admin/css/nucleo-svg.css' %}" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- CSS Files -->
+  <link id="pagestyle" href="{% static 'admin/css/material-dashboard.css' %}" rel="stylesheet" />
+</head>
+
+<body class="g-sidenav-show  bg-gray-200">
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
+        <img src="{% static 'admin/img/logo-ct.png' %}" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold text-white">Dashboard</span>
+      </a>
+    </div>
+    <hr class="horizontal light mt-0 mb-2">
+    <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white " href="{% url 'admin_home' %}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white active bg-gradient-primary" href="#">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">motorcycle</i>
+            </div>
+            <span class="nav-link-text ms-1">Upload Vehicles Details</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="{% url 'v_deatils' %}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">person</i>
+            </div>
+            <span class="nav-link-text ms-1">View Registration Details</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="{% url 'fine_details' %}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">file_upload</i>
+            </div>
+            <span class="nav-link-text ms-1">Emp_details</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white  " href="{% url 'fine' %}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">payments</i>
+            </div>
+            <span class="nav-link-text ms-1">Fine and Price Deatils</span>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+    <div class="sidenav-footer position-absolute w-100 bottom-0 ">
+      <div class="mx-3">
+        <a class="btn bg-gradient-primary mt-4 w-100" href="{% url 'logout' %}" type="button">Logout</a>
+      </div>
+    </div>
+  </aside>
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tables</li>
+          </ol>
+          <h6 class="font-weight-bolder mb-0">Tables</h6>
+        </nav>
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <div class="input-group input-group-outline">
+              <label class="form-label">Type here...</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <ul class="navbar-nav  justify-content-end">
+            
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item px-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0">
+                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Vechile Details Form</h6>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+              <div class="table-responsive p-0">
+                <div class="table-responsive">
+                  <div class="container text-white" >
+                    <form method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="row">
+                        <div class="col-sm-6" style="background-color:rgba(32, 32, 189, 0.395);">
+                            <div class="container">
+                              <hr>
+                              <div class="row align-items-end">
+                                <!-- User Type -->
+                                <div class="col-lg-4">
+                                  <label for="user_type"><b>User Type</b></label>
+                                  <select class="form-select" id="user_type" name="user_type" style="background:#fff; border-radius:8px;" required onchange="toggleUserField()">
+                                    <option value="">----- Select ------</option>
+                                    <option value="new">New User</option>
+                                    <option value="existing">Existing User</option>
+                                  </select>
+                                </div>
+
+                                <!-- Existing User (hidden by default) -->
+                                
+                                <div class="col-lg-4" id="existingUserCol" style="display:none;">
+                                  <label for="existing_user"><b>Select Existing User</b></label>
+                                  <select id="existing_user" name="existing_user" class="form-select" style="background:#fff; border-radius:8px;" onchange="fillUserData()">
+                                    <option value="">-- Select Existing User --</option>
+                                    {% for user in login_users %}
+                                    <option 
+                                        value="{{ user.email }}"
+                                        data-username="{{ user.username }}"
+                                        data-lastname="{{ user.lastname }}"
+                                        data-email="{{ user.email }}"
+                                        data-phone="{{ user.phone }}"
+                                        data-gender="{{ user.gender }}"
+                                        data-image="{{ user.user_image.url }}"
+                                        data-country="{{ user.country }}"
+                                        data-state="{{ user.state }}"
+                                        data-city="{{ user.city }}"
+                                        data-street="{{ user.street_name }}"
+                                        data-house="{{ user.house_number }}"
+                                    >
+                                      {{ user.phone }}
+                                    </option>
+                                    {% endfor %}
+                                  </select>
+                                </div>
+
+
+
+                                <!-- Gender -->
+                                <div class="col-lg-4">
+                                  <label for="gender"><b>Gender</b></label>
+                                  <select class="form-select" style="background:#fff; border-radius:8px;" name="gender" required>
+                                    <option value="">----- Select ------</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="row mt-4">
+                                <div class="col-lg-6">
+                                <label for="fname"><b>First Name</b></label>
+                                <input type="text" placeholder="Enter First Name" name="fname" id="email" required></div>
+                                <div class="col-lg-6">
+                                <label for="lname"><b>Last Name</b></label>
+                                <input type="text" placeholder="Enter Last Name" name="lname" id="email" required></div>
+                              </div>
+
+
+                              <div class="row">
+                                <div class="col-lg-4">
+                                  <label for="Email"><b>Email</b></label>
+                                  <input type="email" placeholder="Enter Email" name="email" id="email" required>
+                                </div>
+                                <div class="col-lg-4">
+                                  <label for="phone"><b>Phone</b></label>
+                                  <input type="tel" placeholder="Enter Phone" name="phone" id="psw" required>
+                                </div>
+                                <div class="col-lg-4">
+                                  <label for="select"><b>Vechile Type</b></label>
+                                  <select class="select" name="v-type">
+                                    <option value="select">-----select------</option>
+                                    <option>Bike</option>
+                                    <option>Car</option>
+                                    <option>Auto</option>
+                                  </select>
+                                
+                                
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-4">
+                                  <label for="v-year"><b>Vechile Year</b></label>
+                                  <input type="text" placeholder="Enter Vechile Year" name="v-year" id="psw-repeat" required>
+                                </div>
+                                <div class="col-lg-4">
+                                  <label for="v-make"><b>Vechile Make</b></label>
+                                  <input type="text" placeholder="Enter Vechile Make" name="v-make" id="psw-repeat" required>
+                                </div>
+                                <div class="col-lg-4">
+                                  <label for="v-model"><b>Vechile Model</b></label>
+                                  <input type="text" placeholder="Enter Vechile Model" name="v-model" id="psw-repeat" required>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-4">
+                                  <label for="v-color"><b>Vechile Color</b></label>
+                                  <input type="text" placeholder="Enter Vechile color" name="v-color" id="psw-repeat" required>
+                                </div>
+                                <div class="col-lg-4">
+                                  <label for="v-mileage"><b>Vechile Mileage</b></label>
+                                  <input type="text" placeholder="Enter Vechile Mileage" name="v-mileage" id="psw-repeat" required>
+                                </div>
+                                <div class="col-lg-4">
+                                  <label for="v-number"><b>Vechile Number</b></label>
+                                  <input type="text" placeholder="Enter Vechile Number" name="v-number" id="psw-repeat" required>
+                                </div>
+                              </div>
+                              
+                            
+                              
+
+                              <div class=" row">
+                                <div class="col-md-4 mb-4">
+                                  <label for="country"><b>Country</b></label>
+                                    <input type="text" placeholder="Enter Country Name" name="country" id="country" required>
+                                    </select>
+                                  </div>
+                                <div class="col-md-4 mb-4">
+                                  <label for="state"><b>State</b></label>
+                                    <input type="text" placeholder="Enter Vechile Mileage" name="state" id="state" required>
+                                  </select>
+                                </div>
+                                
+                                <div class="col-md-4 mb-4">
+                                  <label for="city"><b>City</b></label>
+                                    <input type="text" placeholder="Enter City Name" name="city" id="city" required>
+                                    </select>
+                                </div>
+                                
+                                <div class="row">
+                                  <div class="col-sm-6">
+                                    <div class="well">
+                                      <label for="s-name"><b>Street Name</b></label>
+                                      <input type="text" placeholder="Enter Street Name" name="s-name" id="psw-repeat" required>
+                                   
+                                      <label for="h-number"><b>House Number</b></label>
+                                      <input type="text" placeholder="Enter House Number" name="h-number" id="psw-repeat" required>
+                                      
+                                      <label for="image"><b>Upload Your Image</b></label>
+                                      <input type="file" name="user-image" onchange="preview(event)">
+                                      
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-5" style="margin-left: 40px; background-color:rgba(151, 224, 212, 0.395);">
+                                    <div class="well">
+                                      <img id="frame" src="" width="200px" height="280px" class="mt-2" alt="No Image"/>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <hr>
+                              
+                              
+                            </div>
+                            
+
+                        </div>
+                        <div class="col-sm-6" style="background-color:rgb(34, 34, 23);">
+                          <div class="drop-zone" style="margin-top: 250px;">
+                            <span class="drop-zone__prompt">Drop file here or click to upload<br> Vehile Image</span>
+                            <input type="file" name="myFile" class="drop-zone__input">
+                          </div>
+                        </div>
+                      </div>
+                      <button type="submit" class="registerbtn mb-3">Upload</button>
+                    </form>
+                    
+                    
+
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <footer class="footer py-4  ">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                © <script>
+                  document.write(new Date().getFullYear())
+                </script>,
+                made with <i class="fa fa-heart"></i> by
+                <a href="#" class="font-weight-bold" target="_blank">Codebook.in</a>
+                for a better web.
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+  <div class="fixed-plugin">
+    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+      <i class="material-icons py-2">settings</i>
+    </a>
+    <div class="card shadow-lg">
+      <div class="card-header pb-0 pt-3">
+        <div class="float-start">
+          <h5 class="mt-3 mb-0">Material UI Configurator</h5>
+          <p>See our dashboard options.</p>
+        </div>
+        <div class="float-end mt-4">
+          <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+        <!-- End Toggle Button -->
+      </div>
+      <hr class="horizontal dark my-1">
+      <div class="card-body pt-sm-3 pt-0">
+        <!-- Sidebar Backgrounds -->
+        <div>
+          <h6 class="mb-0">Sidebar Colors</h6>
+        </div>
+        <a href="javascript:void(0)" class="switch-trigger background-color">
+          <div class="badge-colors my-2 text-start">
+            <span class="badge filter bg-gradient-primary active" data-color="primary" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-dark" data-color="dark" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-info" data-color="info" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-success" data-color="success" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-warning" data-color="warning" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-danger" data-color="danger" onclick="sidebarColor(this)"></span>
+          </div>
+        </a>
+        <!-- Sidenav Type -->
+        <div class="mt-3">
+          <h6 class="mb-0">Sidenav Type</h6>
+          <p class="text-sm">Choose between 2 different sidenav types.</p>
+        </div>
+        <div class="d-flex">
+          <button class="btn bg-gradient-dark px-3 mb-2 active" data-class="bg-gradient-dark" onclick="sidebarType(this)">Dark</button>
+          <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-transparent" onclick="sidebarType(this)">Transparent</button>
+          <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-white" onclick="sidebarType(this)">White</button>
+        </div>
+        <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
+        <!-- Navbar Fixed -->
+        <div class="mt-3 d-flex">
+          <h6 class="mb-0">Navbar Fixed</h6>
+          <div class="form-check form-switch ps-0 ms-auto my-auto">
+            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
+          </div>
+        </div>
+        <hr class="horizontal dark my-3">
+        <div class="mt-2 d-flex">
+          <h6 class="mb-0">Light / Dark</h6>
+          <div class="form-check form-switch ps-0 ms-auto my-auto">
+            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--   Core JS Files   -->
+  <script src="{% static 'admin/js/core/popper.min.js' %}"></script>
+  <script src="{% static 'admin/js/core/bootstrap.min.js' %}"></script>
+  <script src="{% static 'admin/js/plugins/perfect-scrollbar.min.js' %}"></script>
+  <script src="{% static 'admin/js/plugins/smooth-scrollbar.min.js' %}"></script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{% static 'admin/js/material-dashboard.min.js' %}"></script>
+  <script src="{% static 'admin/js/sweetalert.min.js' %}"></script>
+  <script src="{% static 'admin/js/upload.js' %}"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert/dist/sweetalert.min.js"></script>
+
+  {% if messages_list %}
+      <script>
+          swal("Server Response", "{{ messages_list|last|escapejs }}");
+      </script>
+  {% endif %}
+ 
+<script>
+function preview(event) {
+    const frame = document.getElementById('frame');  // select image element
+    frame.src = URL.createObjectURL(event.target.files[0]);
+}
+</script>
+
+ 
+
+
+
+<script>
+function toggleUserField() {
+  const userType = document.getElementById("user_type").value;
+  const existingUserCol = document.getElementById("existingUserCol");
+  if (userType === "existing") {
+    existingUserCol.style.display = "block";
+  } else {
+    existingUserCol.style.display = "none";
+    clearUserFields();
+  }
+}
+
+function fillUserData() {
+  const select = document.getElementById("existing_user");
+  const selected = select.options[select.selectedIndex];
+  if (!selected.value) return;
+
+  // Extract data attributes
+  const data = selected.dataset;
+
+  // Fill text inputs
+  document.querySelector('input[name="fname"]').value = data.username || "";
+  document.querySelector('input[name="lname"]').value = data.lastname || "";
+  document.querySelector('input[name="email"]').value = data.email || "";
+  document.querySelector('input[name="phone"]').value = data.phone || "";
+  document.querySelector('input[name="country"]').value = data.country || "";
+  document.querySelector('input[name="state"]').value = data.state || "";
+  document.querySelector('input[name="city"]').value = data.city || "";
+  document.querySelector('input[name="s-name"]').value = data.street || "";
+  document.querySelector('input[name="h-number"]').value = data.house || "";
+
+  // Set gender dropdown
+  const genderSelect = document.querySelector('select[name="gender"]');
+  if (genderSelect) {
+    for (let option of genderSelect.options) {
+      option.selected = (option.value.toLowerCase() === (data.gender || "").toLowerCase());
+    }
+  }
+
+  // Set profile image
+  const frame = document.getElementById("frame");
+  if (frame && data.image) {
+    frame.src = data.image;
+  } else if (frame) {
+    frame.src = "";
+  }
+}
+
+function clearUserFields() {
+  const fields = ["fname", "lname", "email", "phone", "country", "state", "city", "s-name", "h-number"];
+  fields.forEach(name => {
+    const input = document.querySelector(`[name="${name}"]`);
+    if (input) input.value = "";
+  });
+  
+  const frame = document.getElementById("frame");
+  if (frame) frame.src = "";
+}
+</script>
+
+
+
+</body>
+
+</html>

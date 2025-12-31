@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <!-- CSS only -->
+   
+     
+       <!-- Html2Pdf  -->
+       <script src=
+   "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.1/html2pdf.bundle.min.js" 
+           integrity=
+   "sha512vDKWohFHe2vkVWXHp3tKvIxxXg0pJxeid5eo+UjdjME3DBFBn2F8yWOE0XmiFcFbXxrEOR1JriWEno5Ckpn15A==" 
+           crossorigin="anonymous">
+       </script>
+     
+       <style>
+           .heading{
+             text-align: center;
+             color: #2F8D46;
+           }
+       </style>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+
+.head{
+    
+   
+    margin-left: 30px;
+}
+table, th, td {
+  border: 1px none;
+}
+table {
+  width: 100%;
+}
+  </style>
+</head>
+<body>
+
+
+
+<div class="container-fluid" id ="form-print" style="margin-bottom: 100px;">
+  <div class="row content">
+    
+    
+    <div class="col-sm-9" style="margin-left: 170px; margin-top: 50px;">
+      <div class="well" style="background-color: #f1f1f1;">
+        <img style="max-width: 100px; margin-left: 40%;" src="{% static 'main/images/v-log.png' %}">
+        <h1 class="head">Hyderabad Traffic Police Integrated V-Challan System</h1>
+      </div>
+      
+      
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="well">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>Name :</p>
+                        </td>
+                        <td>
+                            <p>{{view.user_name}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Last Name :</p>
+                        </td>
+                        <td>
+                            <p>{{view.user_lastname}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Gender :</p>
+                        </td>
+                        <td>
+                            <p>{{view.gender}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Email :</p>
+                        </td>
+                        <td>
+                            <p>{{view.user_email}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Phone :</p>
+                        </td>
+                        <td>
+                            <p>{{view.user_phone}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Vechile :</p>
+                        </td>
+                        <td>
+                            <p>{{view.vechile_type}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Vechile year :</p>
+                        </td>
+                        <td>
+                            <p>{{view.vechile_year}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Vechile Make :</p>
+                        </td>
+                        <td>
+                            <p>{{view.vechile_make}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Vechile Model :</p>
+                        </td>
+                        <td>
+                            <p>{{view.vechile_model}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Vechile Color :</p>
+                        </td>
+                        <td>
+                            <p>{{view.vechile_color}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Vechile Mileage :</p>
+                        </td>
+                        <td>
+                            <p>{{view.vechile_mileage}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Vechile Identification Number :</p>
+                        </td>
+                        <td>
+                            <p>{{view.vechile_number}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>House Number :</p>
+                        </td>
+                        <td>
+                            <p>{{view.house_number}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Street Name :</p>
+                        </td>
+                        <td>
+                            <p>{{view.street_name}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>City :</p>
+                        </td>
+                        <td>
+                            <p>{{view.city}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>State :</p>
+                        </td>
+                        <td>
+                            <p>{{view.state}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Country :</p>
+                        </td>
+                        <td>
+                            <p>{{view.country}}</p>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            <a href="{% url 'v_deatils' %}"><button type="button">Go Back</button></a>
+            <button onclick="GeneratePdf();" type="button">Print</button>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="well">
+            <img style="max-width: 100px; " src="/media/{{view.user_image}}">
+          </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="well">
+              <img style="max-width: 100px; " src="/media/{{view.vechile_image}}">
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+<script>          
+    // Function to GeneratePdf
+    function GeneratePdf() {
+        var element = document.getElementById('form-print');
+        html2pdf(element);
+    }
+</script>
+
+<script src=
+"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity=
+"sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" 
+    crossorigin="anonymous">
+</script>
+</html>

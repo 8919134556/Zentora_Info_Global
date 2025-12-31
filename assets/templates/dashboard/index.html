@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Zentora Info Global Solutions</title>
+  {% load static %}
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Marcellus:wght@400&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'dashboard/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'dashboard/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'dashboard/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'dashboard/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="{% static 'dashboard/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'dashboard/css/main.css' %}"  rel="stylesheet">
+
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center position-relative">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="#" class="logo d-flex align-items-center">
+        <!-- <img src="{% static 'dashboard/img/logo.jpg' %}"  alt="AgriCulture"> -->
+         <img src="{% static 'dashboard/img/logo.jpg' %}" alt="AgriCulture">
+
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url 'services' %}">Our Services</a></li>
+          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    
+    <section id="hero" class="hero section dark-background">
+
+      <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <div class="carousel-item active">
+          <img src="{% static 'dashboard/img/GPS_1.png' %}" alt="">
+          <div class="carousel-container">
+            <h2>GPS Tracking Solutions</h2>
+            <p>Reliable GPS-based tracking and fleet management systems for vehicles and assets.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="{% static 'dashboard/img/GPS_2.png' %}" alt="">
+          <div class="carousel-container">
+            <h2>Manpower & Consultancy Services</h2>
+            <p>End-to-end staffing and consultancy support to meet your workforce needs.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="{% static 'dashboard/img/GPS_3.png' %}" alt="">
+          <div class="carousel-container">
+            <h2>Billing Systems & POS Solutions</h2>
+            <p>Smart billing software with printer integration for retail and business management.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="{% static 'dashboard/img/GPS_4.png' %}" alt="">
+          <div class="carousel-container">
+            <h2>Security & Housekeeping Services</h2>
+            <p>Professional security personnel and housekeeping teams for safe, clean environments.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="{% static 'dashboard/img/GPS_5.png' %}" alt="">
+          <div class="carousel-container">
+            <h2>Maintenance & Support Services</h2>
+            <p>Comprehensive service and maintenance solutions ensuring smooth operations.</p>
+          </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+        <ol class="carousel-indicators"></ol>
+
+      </div>
+
+    </section>
+
+    
+    <section id="services" class="services section">
+
+      
+      <div class="container section-title" data-aos="fade-up">
+        <h2>SERVICES</h2>
+        <p>Smart Services for a Smarter Tomorrow</p>
+      </div>
+      <div class="content">
+        <div class="container">
+          <div class="row g-0">
+            <div class="col-lg-3 col-md-6">
+              <div class="service-item">
+                <span class="number">01</span>
+                <div class="service-item-icon">
+                  <!-- Simplified GPS Marker Icon -->
+                  <svg width="80" height="80" viewBox="0 0 512 512" fill="currentColor">
+                    <g>
+                      <!-- Outer Pin -->
+                      <path d="M256 0C153.755 0 70 83.755 70 186c0 123.39 166.031 310.516 175.117 320.09a14.998 14.998 0 0 0 21.767 0C275.969 496.516 442 309.39 442 186 442 83.755 358.245 0 256 0zm0 482.813C222.6 445.37 100 288.78 100 186 100 100.561 170.561 30 256 30s156 70.561 156 156c0 102.78-122.6 259.37-156 296.813z"></path>
+                      
+                      <!-- Inner Circle (GPS Point) -->
+                      <path d="M256 100c-47.421 0-86 38.579-86 86s38.579 86 86 86 86-38.579 86-86-38.579-86-86-86zm0 142c-30.327 0-56-25.673-56-56s25.673-56 56-56 56 25.673 56 56-25.673 56-56 56z"></path>
+                    </g>
+                  </svg>
+                </div>
+                <div class="service-item-content">
+                  <h3 class="service-heading">GPS & Tracking Solutions</h3>
+                  <p>
+                    Real-time vehicle and asset tracking with advanced analytics to improve visibility, productivity, and operational control.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="service-item">
+                <span class="number">02</span>
+                <div class="service-item-icon">
+                  <!-- Simplified Manpower & Consultancy Icon -->
+                  <svg width="80" height="102" viewBox="0 0 512 512" fill="currentColor">
+                    <g>
+                      <!-- Central Person -->
+                      <circle cx="256" cy="160" r="60"></circle>
+                      <path d="M256 240c-66.168 0-120 53.832-120 120v32a16 16 0 0 0 16 16h208a16 16 0 0 0 16-16v-32c0-66.168-53.832-120-120-120zM168 376c0-48.523 39.477-88 88-88s88 39.477 88 88z"></path>
+
+                      <!-- Left Person -->
+                      <circle cx="136" cy="176" r="40" opacity="0.6"></circle>
+                      <path d="M136 232c-44.183 0-80 35.817-80 80v24a12 12 0 0 0 12 12h72v-36c0-27.579 10.749-52.627 28.215-71.526C159.913 235.438 148.289 232 136 232z" opacity="0.6"></path>
+
+                      <!-- Right Person -->
+                      <circle cx="376" cy="176" r="40" opacity="0.6"></circle>
+                      <path d="M376 232c-12.289 0-23.913 3.438-32.215 8.474C361.251 259.373 372 284.421 372 312v36h72a12 12 0 0 0 12-12v-24c0-44.183-35.817-80-80-80z" opacity="0.6"></path>
+                    </g>
+                  </svg>
+
+
+                </div>
+                <div class="service-item-content">
+                  <h3 class="service-heading">Business Consultancy</h3>
+                  <p>
+                    Professional consulting services to optimize your operations and support digital transformation.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="service-item">
+                <span class="number">03</span>
+                <div class="service-item-icon">
+                  <!-- Support & Maintenance Gear Icon (Round & Green) -->
+                  <svg xmlns="#" version="1.1" xmlns:xlink="#" width="80" height="80" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+                    <g fill="green">
+                      <!-- Outer Circle -->
+                      <circle cx="256" cy="256" r="200" fill="none" stroke="green" stroke-width="24"></circle>
+
+                      <!-- Gear Teeth & Center -->
+                      <path d="M256 156c-55.228 0-100 44.772-100 100s44.772 100 100 100 100-44.772 100-100-44.772-100-100-100zm0 160c-33.137 0-60-26.863-60-60s26.863-60 60-60 60 26.863 60 60-26.863 60-60 60zM256 140v-40M256 412v-40M140 256h-40M412 256h-40M156 156l-28-28M384 384l-28-28M156 356l-28 28M384 128l-28 28" stroke="green" stroke-width="16" fill="none"></path>
+                    </g>
+                  </svg>
+
+
+                </div>
+                <div class="service-item-content">
+                  <h3 class="service-heading">Installation & Technical Support</h3>
+                  <p>
+                    End-to-end setup, integration, and ongoing technical support to keep your systems running seamlessly.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="service-item">
+                <span class="number">04</span>
+                <div class="service-item-icon">
+                  <!-- Software Development Icon -->
+                  <svg width="80" height="102" viewBox="0 0 64 64" fill="green">
+                    <g>
+                      <!-- Code Window -->
+                      <rect x="8" y="8" width="48" height="48" rx="4" ry="4" stroke="green" stroke-width="4" fill="none"/>
+                      
+                      <!-- Left Bracket -->
+                      <polyline points="22,24 18,32 22,40" fill="none" stroke="green" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                      
+                      <!-- Right Bracket -->
+                      <polyline points="42,24 46,32 42,40" fill="none" stroke="green" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                  </svg>
+
+
+                </div>
+                <div class="service-item-content">
+                  <h3 class="service-heading">Software Development</h3>
+                  <p>
+                    Custom-built web, mobile, and embedded software tailored to your business requirements.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+              <div class="service-item">
+                <span class="number">05</span>
+                <div class="service-item-icon">
+                  <!-- Billing System with Printer Icon -->
+                  <svg width="80" height="78" viewBox="0 0 64 64" fill="green">
+                    <g>
+                      <!-- Printer Body -->
+                      <rect x="10" y="20" width="44" height="28" rx="2" ry="2" stroke="green" stroke-width="2" fill="none"/>
+                      <!-- Printer Top -->
+                      <rect x="16" y="12" width="32" height="12" rx="1" ry="1" stroke="green" stroke-width="2" fill="none"/>
+                      <!-- Paper/Receipt -->
+                      <rect x="20" y="4" width="24" height="12" fill="green"/>
+                      <!-- Paper Lines -->
+                      <line x1="24" y1="8" x2="40" y2="8" stroke="white" stroke-width="1.5"/>
+                      <line x1="24" y1="10" x2="40" y2="10" stroke="white" stroke-width="1.5"/>
+                    </g>
+                  </svg>
+                </div>
+                <div class="service-item-content">
+                  <h3 class="service-heading">Billing Software with Bluetooth Printers</h3>
+                  <p>
+                    Smart, portable billing systems that simplify transactions and support on-the-go business operations.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="service-item">
+                <span class="number">06</span>
+                <div class="service-item-icon">
+                  <!-- Security & Housekeeping Icon -->
+                  <svg width="80" height="102" viewBox="0 0 64 64" fill="green">
+                    <g>
+                      <!-- Shield -->
+                      <path d="M32 4 L12 16 V36 C12 48 32 60 32 60 C32 60 52 48 52 36 V16 Z" stroke="green" stroke-width="2" fill="none"/>
+                      <!-- Checkmark -->
+                      <polyline points="20,34 28,42 44,24" fill="none" stroke="green" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                  </svg>
+
+                </div>
+                <div class="service-item-content">
+                  <h3 class="service-heading">Security Systems (CCTV)</h3>
+                  <p>
+                    High-quality surveillance and monitoring systems for homes, farms, and businesses.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="service-item">
+                <span class="number">07</span>
+                <div class="service-item-icon">
+                  <!-- Support & Maintenance Gear Icon (Round & Green) -->
+                  <svg width="80" height="80" viewBox="0 0 512 512" fill="none"
+                      stroke="green" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M502.6 190.8c-13.4 4.4-27.8 6.8-42.6 6.8-66.3 0-120-53.7-120-120
+                            0-14.8 2.4-29.2 6.8-42.6-2.1-.3-4.3-.5-6.5-.5-80.5 0-146 65.5-146 146
+                            0 24.8 6.3 48.2 17.4 68.5l-166.8 166.8c-19.5 19.5-19.5 51.2 0 70.7
+                            19.5 19.5 51.2 19.5 70.7 0l166.8-166.8c20.3 11.1 43.7 17.4 68.5 17.4
+                            80.5 0 146-65.5 146-146 0-2.2-.2-4.4-.5-6.5z"/>
+                  </svg>
+
+                </div>
+                <div class="service-item-content">
+                  <h3 class="service-heading">Farmer Security IoT Solutions</h3>
+                  <p>
+                    IoT-based monitoring systems designed to ensure safety and security for farmers and agricultural assets.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="service-item">
+                <span class="number">08</span>
+                <div class="service-item-icon">
+                  <!-- Green Monitor Icon -->
+                  <svg width="80" height="80" viewBox="0 0 64 64" fill="green">
+                    <g>
+                      <!-- Monitor / Screen -->
+                      <rect x="8" y="12" width="48" height="32" rx="3" ry="3" stroke="green" stroke-width="2" fill="none"/>
+                      <!-- Stand -->
+                      <rect x="24" y="44" width="16" height="4" fill="green"/>
+                    </g>
+                  </svg>
+
+
+
+                </div>
+                <div class="service-item-content">
+                  <h3 class="service-heading">Video Telematics</h3>
+                  <p>
+                    AI-powered video solutions for driver behavior monitoring, incident recording, and safety insights in real-time.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="about" class="about section">
+
+      <div class="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+              <img src="{% static 'dashboard/img/service_image.png' %}" alt="Image " class="img-fluid img-overlap" data-aos="zoom-out">
+            </div>
+            <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
+              <h3 class="content-subtitle text-white opacity-50">Why Choose Us</h3>
+              <h2 class="content-title mb-4">
+                More than <strong>10 year experience</strong> in telematics
+                industry
+              </h2>
+              <p class="opacity-50">
+                With years of expertise in telematics, IoT, and software solutions, we deliver reliable, innovative, and future-ready technology for smarter operations and improved efficiency.
+              </p>
+
+              <div class="row my-5">
+                <div class="col-lg-12 d-flex align-items-start mb-4">
+                  <i class="bi bi-truck me-4 display-6"></i>
+                  <div>
+                    <h4 class="m-0 h5 text-white">Connected Fleet Solutions</h4>
+                    <p class="text-white opacity-50">Track and manage your vehicles in real-time for improved productivity and safety.</p>
+                  </div>
+                </div>
+                <div class="col-lg-12 d-flex align-items-start mb-4">
+                  <i class="bi bi-bar-chart-line me-4 display-6"></i>
+                  <div>
+                    <h4 class="m-0 h5 text-white">IoT & Data Analytics</h4>
+                    <p class="text-white opacity-50">Leverage actionable insights from telematics data to reduce costs and enhance performance.</p>
+                  </div>
+                </div>
+                <div class="col-lg-12 d-flex align-items-start">
+                  <i class="bi bi-gear me-4 display-6"></i>
+                  <div>
+                    <h4 class="m-0 h5 text-white">Customizable Platforms</h4>
+                    <p class="text-white opacity-50">Tailored telematics solutions to fit your business needs, whether for logistics, transportation, or asset management.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="about-3" class="about-3 section">
+
+      <div class="container">
+        <div class="row gy-4 justify-content-between align-items-center">
+          <div class="col-lg-6 order-lg-2 position-relative" data-aos="zoom-out">
+            <img src="{% static 'dashboard/img/service_image2.png' %}"  alt="Image" class="img-fluid">
+            <a href="#" class="glightbox pulsating-play-btn">
+              <span class="play"><i class="bi bi-play-fill"></i></span>
+            </a>
+          </div>
+          <div class="col-lg-5 order-lg-1" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="content-title mb-4">Smart Data, Smarter Decisions</h2>
+            <p class="mb-4">
+              Harness IoT sensors and telematics data to gain actionable insights that enhance performance, safety, and cost management.
+            </p>
+            <ul class="list-unstyled list-check">
+              <li>Advanced data visualization and reporting</li>
+              <li>Fleet performance and driver behavior tracking</li>
+              <li>Integration with business systems for seamless operations</li>
+            </ul>
+
+            <p><a href="#" class="btn-cta">Get in touch</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="services-2" class="services-2 section dark-background">
+      
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+        <p>Innovative Telematics Solutions</p>
+      </div>
+
+      <div class="services-carousel-wrap">
+        <div class="container">
+          <div class="swiper init-swiper">
+            <script type="application/json" class="swiper-config">
+              {
+                "loop": true,
+                "speed": 600,
+                "autoplay": {
+                  "delay": 5000
+                },
+                "slidesPerView": "auto",
+                "pagination": {
+                  "el": ".swiper-pagination",
+                  "type": "bullets",
+                  "clickable": true
+                },
+                "navigation": {
+                  "nextEl": ".js-custom-next",
+                  "prevEl": ".js-custom-prev"
+                },
+                "breakpoints": {
+                  "320": {
+                    "slidesPerView": 1,
+                    "spaceBetween": 40
+                  },
+                  "1200": {
+                    "slidesPerView": 3,
+                    "spaceBetween": 40
+                  }
+                }
+              }
+            </script>
+            <button class="navigation-prev js-custom-prev">
+              <i class="bi bi-arrow-left-short"></i>
+            </button>
+            <button class="navigation-next js-custom-next">
+              <i class="bi bi-arrow-right-short"></i>
+            </button>
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="service-item">
+                  <div class="service-item-contents">
+                    <a href="#">
+                      <span class="service-item-category">We do</span>
+                      <h2 class="service-item-title">GPS & Tracking Solutions</h2>
+                    </a>
+                  </div>
+                  <img src="{% static 'dashboard/img/GPS_ser.png' %}" alt="Image" class="img-fluid">
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="service-item">
+                  <div class="service-item-contents">
+                    <a href="#">
+                      <span class="service-item-category">We do</span>
+                      <h2 class="service-item-title">Security Systems (CCTV)</h2>
+                    </a>
+                  </div>
+                  <img src="{% static 'dashboard/img/cctv.png' %}" alt="Image" class="img-fluid">
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="service-item">
+                  <div class="service-item-contents">
+                    <a href="#">
+                      <span class="service-item-category">We do</span>
+                      <h2 class="service-item-title">Video Telematics</h2>
+                    </a>
+                  </div>
+                  <img src="{% static 'dashboard/img/video_tel.png' %}" alt="Image" class="img-fluid">
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="service-item">
+                  <div class="service-item-contents">
+                    <a href="#">
+                      <span class="service-item-category">We do</span>
+                      <h2 class="service-item-title">Billing Software with Bluetooth Printers </h2>
+                    </a>
+                  </div>
+                  <img src="{% static 'dashboard/img/ble_printer.png' %}"  alt="Image" class="img-fluid">
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="service-item">
+                  <div class="service-item-contents">
+                    <a href="#">
+                      <span class="service-item-category">We do</span>
+                      <h2 class="service-item-title">Farmer Security IoT Solutions</h2>
+                    </a>
+                  </div>
+                  <img src="{% static 'dashboard/img/farmer.png' %}" alt="Image" class="img-fluid">
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="service-item">
+                  <div class="service-item-contents">
+                    <a href="#">
+                      <span class="service-item-category">We do</span>
+                      <h2 class="service-item-title">Software Development</h2>
+                    </a>
+                  </div>
+                  <img src="{% static 'dashboard/img/software.png' %}" alt="Image" class="img-fluid">
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="service-item">
+                  <div class="service-item-contents">
+                    <a href="#">
+                      <span class="service-item-category">We do</span>
+                      <h2 class="service-item-title">Installation & Technical Support</h2>
+                    </a>
+                  </div>
+                  <img src="{% static 'dashboard/img/installation.png' %}" alt="Image" class="img-fluid">
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="testimonials-12 testimonials section" id="testimonials">
+      
+      <div class="container section-title" data-aos="fade-up">
+        <p>Meet Our Team</p>
+      </div>
+
+      <div class="testimonial-wrap">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 mb-4 mb-md-4">
+              <div class="testimonial">
+                <img src="{% static 'dashboard/img/testimonials/testimonials-1.jpg' %}" alt="Testimonial author">
+                <blockquote>
+                  <p>
+                    “Lorem ipsum dolor sit, amet consectetur adipisicing
+                    elit. Provident deleniti iusto molestias, dolore vel fugiat
+                    ab placeat ea?”
+                  </p>
+                </blockquote>
+                <p class="client-name">James Smith</p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4 mb-md-4">
+              <div class="testimonial">
+                <img src="{% static 'dashboard/img/testimonials/testimonials-2.jpg' %}" alt="Testimonial author">
+                <blockquote>
+                  <p>
+                    “Lorem ipsum dolor sit, amet consectetur adipisicing
+                    elit. Provident deleniti iusto molestias, dolore vel fugiat
+                    ab placeat ea?”
+                  </p>
+                </blockquote>
+                <p class="client-name">Kate Smith</p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4 mb-md-4">
+              <div class="testimonial">
+                <img src="{% static 'dashboard/img/testimonials/testimonials-3.jpg' %}"  alt="Testimonial author">
+                <blockquote>
+                  <p>
+                    “Lorem ipsum dolor sit, amet consectetur adipisicing
+                    elit. Provident deleniti iusto molestias, dolore vel fugiat
+                    ab placeat ea?”
+                  </p>
+                </blockquote>
+                <p class="client-name">Claire Anderson</p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4 mb-md-4">
+              <div class="testimonial">
+                <img src="{% static 'dashboard/img/testimonials/testimonials-4.jpg' %}" alt="Testimonial author">
+                <blockquote>
+                  <p>
+                    “Lorem ipsum dolor sit, amet consectetur adipisicing
+                    elit. Provident deleniti iusto molestias, dolore vel fugiat
+                    ab placeat ea?”
+                  </p>
+                </blockquote>
+                <p class="client-name">Dan Smith</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    
+
+    
+    <section id="call-to-action" class="call-to-action section light-background">
+
+      <div class="content">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6">
+              <h3>Subscribe To Our Newsletter</h3>
+              <p class="opacity-50">
+                Stay updated with the latest in telematics, IoT, and fleet management solutions. Get insights, tips, and industry news delivered straight to your inbox!
+              </p>
+            </div>
+            <div class="col-lg-6">
+              <form action="#" class="form-subscribe php-email-form">
+                <div class="form-group d-flex align-items-stretch">
+                  <input type="email" name="email" class="form-control h-100" placeholder="Enter your e-mail">
+                  <input type="submit" class="btn btn-secondary px-4" value="Subcribe">
+                </div>
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">
+                  Your subscription request has been sent. Thank you!
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6 footer-about">
+            <a href="index.html" class="logo d-flex align-items-center">
+              <span class="sitename">Zentora Info Global Solutions</span>
+            </a>
+            <div class="footer-contact pt-3">
+              <p>#2, 4th floor, 1st cross</p>
+              <p>Maruthi Layout Malagala Nagarabhavi 2nd stage</p>
+              <p>Bangalore - 560072</p>
+              <p class="mt-3"><strong>Phone:</strong> <span>+91 9901346363</span></p>
+              <p><strong>Email:</strong> <span>zentorainfoglobalsolutions@gmail.com</span></p>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Terms of service</a></li>
+              <li><a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><a href="#">GPS & Tracking Solutions</a></li>
+              <li><a href="#">Video Telematics</a></li>
+              <li><a href="#">Billing Software with Bluetooth Printers</a></li>
+              <li><a href="#">Farmer Security IoT Solutions</a></li>
+              <li><a href="#">Software Development</a></li>
+              <li><a href="#">Installation & Technical Support</a></li>
+              <li><a href="#">Security Systems (CCTV)</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright text-center">
+      <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+
+        <div class="d-flex flex-column align-items-center align-items-lg-start">
+          <div>
+            © Copyright <strong><span>Zentora Info Global Solutions</span></strong>. All Rights Reserved
+          </div>
+        </div>
+
+        <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
+          <a href="https://x.com/ZentoraInfo_63?t=jLZsjYkmXyv2PkXwJn1jSg&s=09"><i class="bi bi-twitter-x"></i></a>
+          <a href="https://www.facebook.com/share/1DdKJZB7p7/"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/zentorainfoglobal?utm_source=qr&igsh=MXNhdmYwOXc3YTE3Mg=="><i class="bi bi-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/zentora-info-global-solutions-6713a8389?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="bi bi-linkedin"></i></a>
+        </div>
+
+      </div>
+    </div>
+
+  </footer>
+
+  
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+ 
+  <div id="preloader"></div>
+
+  
+  <script src="{% static 'dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'dashboard/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'dashboard/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'dashboard/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'dashboard/vendor/glightbox/js/glightbox.min.js' %}"></script>
+
+  
+  <script src="{% static 'dashboard/js/main.js' %}"></script>
+
+</body>
+
+</html>
