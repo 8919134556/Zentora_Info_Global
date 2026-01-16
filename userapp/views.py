@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.template import loader
 from django.shortcuts import render
-from .models import GPS
+from .models import CurrentTable
 from adminapp.models import Login, Vechile_Register
 from django.core.mail import EmailMessage
 from django.contrib.auth.hashers import make_password
@@ -105,8 +105,8 @@ def gps_data_api(request):
     user_vehicles = Vechile_Register.objects.filter(user_email=email).values_list('vechile_number', flat=True)
     # Filter GPS data for those vehicles using __in
     data = list(
-        GPS.objects.filter(vehicle_no__in=user_vehicles)
-        .values('vehicle_no', 'lat', 'lon', 'speed', 'track_time')
+        CurrentTable.objects.filter(vehicleno__in=user_vehicles)
+        .values('vehicleno', 'lat', 'lon', 'speed', 'tracktime') # add unit number also
     )
 
     return JsonResponse({'vehicles': data})

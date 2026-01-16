@@ -106,8 +106,18 @@ def upload_vechile(request):
                     f"Please change your password after logging in.\n\n"
                     f"Regards,\nFleet Management Team"
                 )
-                EmailMessage(subject, message, to=[email])
+
+                email_msg = EmailMessage(
+                    subject=subject,
+                    body=message,
+                    from_email=settings.EMAIL_HOST_USER,
+                    to=[email],
+                )
+
+                email_msg.send(fail_silently=False)  # 🔥 THIS WAS MISSING
+
                 print(f"✅ Password email sent to {email}")
+
             except Exception as e:
                 print(f"⚠️ Error sending email: {e}")
 

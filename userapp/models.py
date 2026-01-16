@@ -64,3 +64,72 @@ class GPS(models.Model):
 
     def __str__(self):
         return f"{self.vehicle_no or 'Unknown Vehicle'} @ {self.track_time or 'N/A'}"
+
+
+
+
+
+
+class CurrentTable(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    
+    clientid = models.CharField(max_length=150, blank=True, null=True)
+    vehicleno = models.CharField(max_length=150, blank=True, null=True)
+    unitno = models.CharField(max_length=50)
+    
+    ignition = models.SmallIntegerField()  # 0 or 1
+    tracktime = models.DateTimeField()
+    
+    speed = models.FloatField(blank=True, null=True)
+    gpsstatus = models.SmallIntegerField(blank=True, null=True)  # 0 or 1
+    direction = models.CharField(max_length=20)
+    
+    lat = models.FloatField()
+    lon = models.FloatField()
+    
+    odometer = models.BigIntegerField(blank=True, null=True)
+    gpsodometer = models.BigIntegerField(blank=True, null=True)
+    
+    location = models.TextField(blank=True, null=True)
+    
+    mainpower = models.FloatField(blank=True, null=True)
+    devbatterylevel = models.FloatField(blank=True, null=True)
+    
+    panic = models.SmallIntegerField(blank=True, null=True)  # 0 or 1
+    immobalizer = models.SmallIntegerField(blank=True, null=True)  # 0 or 1
+    siren = models.SmallIntegerField(blank=True, null=True)  # 0 or 1
+    
+    overspeed = models.FloatField(blank=True, null=True)
+    
+    ha = models.CharField(max_length=20, blank=True, null=True)
+    hb = models.CharField(max_length=20, blank=True, null=True)
+    accident = models.CharField(max_length=20, blank=True, null=True)
+    
+    temperature = models.FloatField(blank=True, null=True)
+    fuellevel = models.FloatField(blank=True, null=True)
+    fuellevelltrs = models.FloatField(blank=True, null=True)
+    
+    x_axis = models.FloatField(blank=True, null=True)
+    y_axis = models.FloatField(blank=True, null=True)
+    z_axis = models.FloatField(blank=True, null=True)
+    
+    alerttype = models.CharField(max_length=150, blank=True, null=True)
+    
+    driverid = models.CharField(max_length=150, blank=True, null=True)
+    driverrfid = models.CharField(max_length=150, blank=True, null=True)
+    drivername = models.CharField(max_length=200, blank=True, null=True)
+    
+    alertdatetime = models.DateTimeField()
+    
+    devicetype = models.CharField(max_length=150, blank=True, null=True)
+    
+    createddate = models.DateTimeField(auto_now_add=True)
+    
+    remarks = models.TextField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'current_table'
+        managed = False  # Django will NOT try to create or modify the table
+
+    def __str__(self):
+        return f"{self.unitno} - {self.vehicleno}"
