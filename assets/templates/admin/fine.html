@@ -59,19 +59,19 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  text-white " href="{% url 'v_deatils' %}">
+          <a class="nav-link  text-white " href="{% url 'v_details' %}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">person</i>
+              <i class="material-icons opacity-10">assignment</i>
             </div>
             <span class="nav-link-text ms-1">View Registration Details</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="{% url 'fine_details' %}">
+          <a class="nav-link text-white " href="{% url 'add_emp' %}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">file_upload</i>
+              <i class="material-icons opacity-10">person</i>
             </div>
-            <span class="nav-link-text ms-1">Upload Fine Deatils</span>
+            <span class="nav-link-text ms-1">Add Emp</span>
           </a>
         </li>
         <li class="nav-item">
@@ -213,7 +213,7 @@
                   document.write(new Date().getFullYear())
                 </script>,
                 made with <i class="fa fa-heart"></i> by
-                <a href="#" class="font-weight-bold" target="_blank">Codebook.in</a>
+                <a href="#" class="font-weight-bold" target="_blank">Zentora Info Global Solution</a>
                 for a better web.
               </div>
             </div>
@@ -315,13 +315,6 @@
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{% static 'cloud/js/material-dashboard.min.js' %}"></script>
   <script src="{% static 'js/sweetalert.min.js' %}"></script>
-  <script>
-		{% for msg in messages %} 
-			   
-		   swal( "Server Response", "{{msg}}");
-		  
-		 {% endfor %} 
-	   </script>
 </body>
 
 

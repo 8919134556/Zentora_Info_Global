@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout as django_logout
 from django.shortcuts import render, redirect, get_object_or_404,reverse
 from django.http import HttpResponse
 from django.contrib import messages
@@ -11,195 +12,267 @@ from django.utils.crypto import get_random_string
 from django.db.models import Sum
 from django.http import JsonResponse
 from django.contrib.auth.hashers import make_password
+from django.views.decorators.cache import never_cache
+from django.contrib.auth.decorators import login_required
+from django.db import transaction
 
 
 
+def admin_login_page(request):
+    """
+    Handles admin login.
+    GET: Show login page
+    POST: Authenticate and login admin
+    """
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
 
+        # Authenticate user
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            if user.is_staff:  # Only allow staff/admin users
+                login(request, user)  # Start session
+                return redirect("admin_home")  # Replace with your dashboard URL name
+            else:
+                messages.error(request, "You do not have admin privileges.")
+        else:
+            messages.error(request, "Invalid username or password.")
+
+    return render(request, "admin/admin-login-page.html")
+
+
+
+@never_cache
+@login_required(login_url='admin_login')
 def admin_home(request):
     v_regi = Vechile_Register.objects.all().count()
-    # fines = Fines.objects.all().count()
-    # money = Payments.objects.filter(status ="Success").aggregate(price_sum=Sum('amount'))
-    # v_fines = V_Fines.objects.all().count()
-    # context = {
-    #     'data1' : v_regi,
-    #     'data2' : fines,
-    #     'data3' : money['price_sum'],
-    #     'data4' : v_fines
-    # }
     context = {
         'data1' : v_regi,
     }
     return render (request, './admin/dashboard.html', context = context)
 
-
+@never_cache
+@login_required(login_url="admin_login")
+@transaction.atomic
 def upload_vechile(request):
-    login_users = Login.objects.all().order_by('username')
-
+    # ONLY NORMAL USERS (NO SUPERUSER)
+    user_login_url = request.build_absolute_uri(reverse("user_login"))
+    login_users = User.objects.filter(
+        is_superuser=False,
+        is_staff=False
+    ).order_by("username")
     if request.method == "POST":
-        user_type = request.POST.get('user_type')  # "new" or "existing"
 
-        gender = request.POST.get('gender')
-        fname = request.POST.get('fname')
-        lname = request.POST.get('lname')
-        email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        v_type = request.POST.get('v-type')
-        v_year = request.POST.get('v-year')
-        v_make = request.POST.get('v-make')
-        v_model = request.POST.get('v-model')
-        v_color = request.POST.get('v-color')
-        v_mileage = request.POST.get('v-mileage')
-        v_number = request.POST.get('v-number')
-        country = request.POST.get('country')
-        state = request.POST.get('state')
-        city = request.POST.get('city')
-        s_name = request.POST.get('s-name')
-        h_number = request.POST.get('h-number')
-
-        u_image = request.FILES.get('user-image')
-        v_image = request.FILES.get('myFile')
-
-        if not v_image:
-            return render(request, './admin/upload-vechile.html', {
-                'msg': "⚠️ Vehicle image is required.",
-                'login_users': login_users
+        user_type = request.POST.get("user_type")  # new / existing
+        # -------------------------
+        # USER INPUT
+        # -------------------------
+        gender = request.POST.get("gender")
+        fname = request.POST.get("fname")
+        lname = request.POST.get("lname")
+        email = request.POST.get("email")
+        phone = int(request.POST.get("phone"))
+        country = request.POST.get("country")
+        state = request.POST.get("state")
+        city = request.POST.get("city")
+        street_name = request.POST.get("street_name")
+        house_number = request.POST.get("house_number")
+        user_image = request.FILES.get("user_image")
+        # -------------------------
+        # VEHICLE INPUT
+        # -------------------------
+        vechile_year = request.POST.get("vechile_year")
+        vechile_make = request.POST.get("vechile_make")
+        vechile_model = request.POST.get("vechile_model")
+        vechile_color = request.POST.get("vechile_color")
+        vechile_mileage = request.POST.get("vechile_mileage")
+        vechile_number = request.POST.get("vechile_number")
+        vechile_type = request.POST.get("vechile_type")
+        vechile_image = request.FILES.get("vechile_image")
+        if not vechile_image:
+            return render(request, "./admin/upload-vechile.html", {
+                "msg": "⚠️ Vehicle image is required",
+                "login_users": login_users
             })
-
-        login_user = None
-
-        # 🧩 Case 1: New user
+        # =====================================================
+        # 🧩 CASE 1: NEW USER
+        # =====================================================
         if user_type == "new":
-            if Login.objects.filter(email=email).exists():
-                return render(request, './admin/upload-vechile.html', {
-                    'msg': f'User with email {email} already exists! Please select "Existing User".',
-                    'login_users': login_users
+            if User.objects.filter(username=email).exists():
+                return render(request, "./admin/upload-vechile.html", {
+                    "msg": "⚠️ User already exists. Choose existing user.",
+                    "login_users": login_users
                 })
 
-            raw_password = get_random_string(length=8)
-            print(raw_password)
-            login_user = Login.objects.create(
-                username=fname,
-                lastname=lname,
+            raw_password = get_random_string(8)
+            user = User.objects.create(
+                username=email,
                 email=email,
+                first_name=fname,
+                last_name=lname,
+                password=make_password(raw_password),
+                is_staff=False,
+                is_superuser=False
+            )
+            profile = UserProfile.objects.create(
+                user=user,
                 phone=phone,
                 gender=gender,
                 country=country,
                 state=state,
                 city=city,
-                street_name=s_name,
-                house_number=h_number,
-                user_image=u_image,
-                password=make_password(raw_password),
+                street_name=street_name,
+                house_number=house_number,
+                user_image=user_image,
                 account_status="Pending"
             )
-
-            # send email (optional)
-             # ✉️ Send password email
-            try:
-                subject = "Your Fleet Management Account Credentials"
-                message = (
+            message = (
                     f"Hello {fname},\n\n"
                     f"Your account has been created successfully.\n"
                     f"Please use the following credentials to log in:\n\n"
+                    f"Click here to login: {user_login_url}\n\n"
                     f"Username: {email}\n"
                     f"Password: {raw_password}\n\n"
                     f"Please change your password after logging in.\n\n"
                     f"Regards,\nFleet Management Team"
                 )
 
-                email_msg = EmailMessage(
-                    subject=subject,
-                    body=message,
-                    from_email=settings.EMAIL_HOST_USER,
-                    to=[email],
-                )
+            # 📧 SEND EMAIL
+            EmailMessage(
+                subject="Your Login Credentials",
+                body = message,
+                from_email=settings.EMAIL_HOST_USER,
+                to=[email]
+            ).send(fail_silently=False)
 
-                email_msg.send(fail_silently=False)  # 🔥 THIS WAS MISSING
+        # =====================================================
+        # 🧩 CASE 2: EXISTING USER
+        # =====================================================
+        else:
+            user_id = request.POST.get("existing_user")
+            user = User.objects.get(id=user_id)
+            profile = user.profile
+            fname = user.first_name
+            lname = user.last_name
+            email = user.email
+            phone = profile.phone
+            gender = profile.gender
+            country = profile.country
+            state = profile.state
+            city = profile.city
+            street_name = profile.street_name
+            house_number = profile.house_number
+            user_image = profile.user_image
 
-                print(f"✅ Password email sent to {email}")
-
-            except Exception as e:
-                print(f"⚠️ Error sending email: {e}")
-
-        # 🧩 Case 2: Existing user
-        elif user_type == "existing":
-            try:
-                existing_email = request.POST.get('existing_user')
-                login_user = Login.objects.get(email=existing_email)
-            except Login.DoesNotExist:
-                return render(request, './admin/upload-vechile.html', {
-                    'msg': f'No existing user found. Please select a valid user.',
-                    'login_users': login_users
-                })
-
-            fname = login_user.username
-            lname = login_user.lastname
-            email = login_user.email
-            phone = login_user.phone
-            gender = login_user.gender
-            country = login_user.country
-            state = login_user.state
-            city = login_user.city
-            s_name = login_user.street_name
-            h_number = login_user.house_number
-            u_image = login_user.user_image
-
-        # 🚗 Save Vehicle
+        # =====================================================
+        # 🚗 SAVE VEHICLE (ALL FIELDS MAPPED)
+        # =====================================================
         Vechile_Register.objects.create(
+            user=user,
             gender=gender,
             user_name=fname,
             user_lastname=lname,
+            user_email=email,
             user_phone=phone,
+            vechile_year=vechile_year,
+            vechile_make=vechile_make,
+            vechile_model=vechile_model,
+            vechile_color=vechile_color,
+            vechile_mileage=vechile_mileage,
+            vechile_number=vechile_number,
+            vechile_type=vechile_type,
             country=country,
             state=state,
             city=city,
-            vechile_year=v_year,
-            vechile_make=v_make,
-            vechile_model=v_model,
-            vechile_color=v_color,
-            vechile_mileage=v_mileage,
-            vechile_number=v_number,
-            vechile_type=v_type,
-            street_name=s_name,
-            house_number=h_number,
-            vechile_image=v_image,
-            user_email=email,
-            user_image=u_image,
+            street_name=street_name,
+            house_number=house_number,
+            user_image=user_image,
+            vechile_image=vechile_image
         )
 
-        msg = (
-            "✅ Vehicle registered & Login created (Pending Approval)"
-            if user_type == "new" else
-            "✅ Vehicle registered for existing user"
-        )
-        return render(request, './admin/upload-vechile.html', {'msg': msg, 'login_users': login_users})
+        return render(request, "./admin/upload-vechile.html", {
+            "msg": "✅ Vehicle registered successfully",
+            "login_users": login_users
+        })
 
-    return render(request, './admin/upload-vechile.html', {'login_users': login_users})
-
-
+    return render(request, "./admin/upload-vechile.html", {
+        "login_users": login_users
+    })
 
 
-def v_deatils(request):
-    data = Vechile_Register.objects.all()
-    return render (request, './admin/view-details.html', {'view': data})
+@never_cache
+@login_required(login_url="admin_login")
+def v_details(request):
+    data = (
+        Vechile_Register.objects
+        .select_related("user", "user__profile")
+        .all()
+    )
+    return render(
+        request,
+        "./admin/view-details.html",
+        {"view": data}
+    )
 
+
+
+@login_required(login_url="admin_login")
+def approve_user(request, user_id):
+    profile = UserProfile.objects.get(user_id=user_id)
+    profile.account_status = "Approved"
+    profile.save()
+    return redirect("v_details")
+
+
+@login_required(login_url="admin_login")
+def reject_user(request, user_id):
+    profile = UserProfile.objects.get(user_id=user_id)
+    profile.account_status = "Rejected"
+    profile.save()
+    return redirect("v_details")
+
+
+@never_cache
+@login_required(login_url='admin_login')
 def popup(request, id):
     data = Vechile_Register.objects.get(id=id)
     return render (request, './admin/popup-form.html', {'view': data})
 
+
+
+@never_cache
+@login_required(login_url='admin_login')
+def add_emp(request):
+   
+    return render (request, './admin/add-emp.html')
+
+
+
+
+
+
+@never_cache
+@login_required(login_url='admin_login')
 def fine(request):
-    
     return render (request, './admin/fine.html')
 
-def fine_details(request):
-   
-    return render (request, './admin/upload-fine-details.html')
 
+
+
+@never_cache
+@login_required(login_url='admin_login')
 def fine_edit(request, id):
     
     return render (request, './admin/fine-edit.html')
 
-
-
+@never_cache
 def logout(request):
-    return redirect("home")
+    """
+    Logs out the user by destroying the session
+    and redirects to the home/login page.
+    """
+    django_logout(request)  # This clears the session and logs out the user
+    messages.success(request, "You have been successfully logged out.")
+    return redirect("admin_login")  # Replace "home" with your login page if needed

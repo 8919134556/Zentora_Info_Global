@@ -9,28 +9,6 @@
   <title>
     View Registration Details
   </title>
-<!-- 
-<link href=
-"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-        integrity=
-"sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
-        crossorigin="anonymous" rel="stylesheet">
-  
-
-    <script src=
-"https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.1/html2pdf.bundle.min.js" 
-        integrity=
-"sha512vDKWohFHe2vkVWXHp3tKvIxxXg0pJxeid5eo+UjdjME3DBFBn2F8yWOE0XmiFcFbXxrEOR1JriWEno5Ckpn15A==" 
-        crossorigin="anonymous">
-    </script>
-  
-    <style>
-        .heading{
-          text-align: center;
-          color: #2F8D46;
-        }
-    </style>
- -->
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -85,17 +63,17 @@
         <li class="nav-item">
           <a class="nav-link text-white active bg-gradient-primary" href="#">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">person</i>
+              <i class="material-icons opacity-10">assignment</i>
             </div>
             <span class="nav-link-text ms-1">View Registration Details</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="{% url 'fine_details' %}">
+          <a class="nav-link text-white " href="{% url 'add_emp' %}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">file_upload</i>
+              <i class="material-icons opacity-10">person</i>
             </div>
-            <span class="nav-link-text ms-1">Emp_details</span>
+            <span class="nav-link-text ms-1">Add Emp</span>
           </a>
         </li>
         <li class="nav-item">
@@ -178,10 +156,7 @@
                             User Email
                           </th>
                           <th>
-                            User Phone
-                          </th>
-                          <th>
-                            Gender
+                            Vechile Number
                           </th>
                           <th>
                             Registration Date
@@ -189,14 +164,16 @@
                           <th>
                             Details
                           </th>
+                          <th>Account Status</th>
+                          <th>Action</th>
                           
                         </tr>
                       </thead>
                       <tbody>
                         {% for i in view %}
-                        <tr id ="form-print" enctype="text/plain">
+                        <tr id ="form-print" enctype="text/plain" class="text-center">
                           
-                          <td class="text-center">
+                          <td>
                           <img src="/media/{{i.user_image}}" style="width: 50px; height: 50px; border-radius: 70px;" alt="no image" >
                           <p>{{i.user_name}}</p>
                           </td>
@@ -204,19 +181,55 @@
                           {{i.user_email}}
                           </td>
                           <td>
-                            {{i.user_phone}}
+                            {{i.vechile_number}}
                           </td>
-                          <td>
-                            {{i.gender}}
-                            
-                  
-                          </td>
+                          
                           <td>
                             {{i.datetime_created|timesince}} ago
                           </td>
                           <td>
-                            <a href="popup/{{i.id}}"><button type="button" class="btn bg-gradient-success" >View</button></a>
+                            <a href="popup/{{i.id}}"><button type="button" class="btn bg-gradient-success btn-sm" >View</button></a>
                           </td>
+
+                          <td>
+                              {% if i.user.profile %}
+                                  {% if i.user.profile.account_status == "Pending" %}
+                                      <span class="btn bg-gradient-warning btn-sm">Pending</span>
+                                  {% elif i.user.profile.account_status == "Approved" %}
+                                      <span class="btn bg-gradient-success btn-sm">Approved</span>
+                                  {% elif i.user.profile.account_status == "Rejected" %}
+                                      <span class="btn bg-gradient-danger btn-sm">Rejected</span>
+                                  {% else %}
+                                      <span class="btn bg-secondary btn-sm">Unknown</span>
+                                  {% endif %}
+                              {% else %}
+                                  <span class="btn bg-secondary btn-sm">No Profile</span>
+                              {% endif %}
+                          </td>
+
+                          <td>
+                              {% if i.user.profile %}
+                                  {% if i.user.profile.account_status == "Pending" %}
+                                      <a href="{% url 'approve_user' i.user.id %}"
+                                        class="btn btn-success btn-sm">Accept</a>
+
+                                      <a href="{% url 'reject_user' i.user.id %}"
+                                        class="btn btn-danger btn-sm">Reject</a>
+
+                                  {% elif i.user.profile.account_status == "Approved" %}
+                                      <a href="{% url 'reject_user' i.user.id %}"
+                                        class="btn btn-danger btn-sm">Reject</a>
+
+                                  {% elif i.user.profile.account_status == "Rejected" %}
+                                      <a href="{% url 'approve_user' i.user.id %}"
+                                        class="btn btn-success btn-sm">Accept</a>
+                                  {% endif %}
+                              {% else %}
+                                  —
+                              {% endif %}
+                          </td>
+
+
                           
                         </tr>
                         {% endfor %}
@@ -246,7 +259,7 @@
                   document.write(new Date().getFullYear())
                 </script>,
                 made with <i class="fa fa-heart"></i> by
-                <a href="#" class="font-weight-bold" target="_blank">Codebook</a>
+                <a href="#" class="font-weight-bold" target="_blank">Zentora Info Global Solution</a>
                 for a better web.
               </div>
             </div>
@@ -364,12 +377,6 @@
       }
   </script>
 
-      <!-- <script src=
-    "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-          integrity=
-    "sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" 
-          crossorigin="anonymous">
-      </script> -->
 </body>
 
 </html>

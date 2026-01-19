@@ -4,8 +4,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'admin/img/apple-icon.png' %}">
-  <link rel="icon" type="image/png" href="{% static 'admin/img/favicon.png' %}">
   <title>
     Upload Fine Details
   </title>
@@ -100,9 +98,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  text-white " href="{% url 'v_deatils' %}">
+          <a class="nav-link  text-white " href="{% url 'v_details' %}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">person</i>
+              <i class="material-icons opacity-10">assignment</i>
             </div>
             <span class="nav-link-text ms-1">View Registration Details</span>
           </a>
@@ -110,9 +108,9 @@
         <li class="nav-item">
             <a class="nav-link text-white active bg-gradient-primary " href="#">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">file_upload</i>
+                <i class="material-icons opacity-10">person</i>
               </div>
-              <span class="nav-link-text ms-1">Upload Fine Deatils</span>
+              <span class="nav-link-text ms-1">Add Emp</span>
             </a>
           </li>
         <li class="nav-item">
@@ -231,7 +229,7 @@
                   document.write(new Date().getFullYear())
                 </script>,
                 made with <i class="fa fa-heart"></i> by
-                <a href="#" class="font-weight-bold" target="_blank">Codebook.in</a>
+                <a href="#" class="font-weight-bold" target="_blank">Zentora Info Global Solution</a>
                 for a better web.
               </div>
             </div>
@@ -333,13 +331,18 @@
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{% static 'cloud/js/material-dashboard.min.js' %}"></script>
   <script src="{% static 'js/sweetalert.min.js' %}"></script>
-  <script>
-		{% for msg in messages %} 
-			   
-		   swal( "Server Response", "{{msg}}");
-		  
-		 {% endfor %} 
-	   </script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert/dist/sweetalert.min.js"></script>
+
+  {% if messages_list %}
+      <script>
+          swal("Server Response", "{{ messages_list|last|escapejs }}");
+      </script>
+  {% endif %}
+
+
+
 </body>
 
 

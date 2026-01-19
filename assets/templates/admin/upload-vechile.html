@@ -4,8 +4,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'admin/img/apple-icon.png' %}">
-  <link rel="icon" type="image/png" href="{% static 'admin/img/favicon.png' %}">
   <title>
     Upload-Vechile Registartion
   </title>
@@ -111,19 +109,19 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="{% url 'v_deatils' %}">
+          <a class="nav-link text-white " href="{% url 'v_details' %}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">person</i>
+              <i class="material-icons opacity-10">assignment</i>
             </div>
             <span class="nav-link-text ms-1">View Registration Details</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="{% url 'fine_details' %}">
+          <a class="nav-link text-white " href="{% url 'add_emp' %}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">file_upload</i>
+              <i class="material-icons opacity-10">person</i>
             </div>
-            <span class="nav-link-text ms-1">Emp_details</span>
+            <span class="nav-link-text ms-1">Add Emp</span>
           </a>
         </li>
         <li class="nav-item">
@@ -273,7 +271,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                   <label for="select"><b>Vechile Type</b></label>
-                                  <select class="select" name="v-type">
+                                  <select class="select" name="vechile_type">
                                     <option value="select">-----select------</option>
                                     <option>Bike</option>
                                     <option>Car</option>
@@ -286,29 +284,29 @@
                               <div class="row">
                                 <div class="col-lg-4">
                                   <label for="v-year"><b>Vechile Year</b></label>
-                                  <input type="text" placeholder="Enter Vechile Year" name="v-year" id="psw-repeat" required>
+                                  <input type="text" placeholder="Enter Vechile Year" name="vechile_year" id="psw-repeat" required>
                                 </div>
                                 <div class="col-lg-4">
                                   <label for="v-make"><b>Vechile Make</b></label>
-                                  <input type="text" placeholder="Enter Vechile Make" name="v-make" id="psw-repeat" required>
+                                  <input type="text" placeholder="Enter Vechile Make" name="vechile_make" id="psw-repeat" required>
                                 </div>
                                 <div class="col-lg-4">
                                   <label for="v-model"><b>Vechile Model</b></label>
-                                  <input type="text" placeholder="Enter Vechile Model" name="v-model" id="psw-repeat" required>
+                                  <input type="text" placeholder="Enter Vechile Model" name="vechile_model" id="psw-repeat" required>
                                 </div>
                               </div>
                               <div class="row">
                                 <div class="col-lg-4">
                                   <label for="v-color"><b>Vechile Color</b></label>
-                                  <input type="text" placeholder="Enter Vechile color" name="v-color" id="psw-repeat" required>
+                                  <input type="text" placeholder="Enter Vechile color" name="vechile_color" id="psw-repeat" required>
                                 </div>
                                 <div class="col-lg-4">
                                   <label for="v-mileage"><b>Vechile Mileage</b></label>
-                                  <input type="text" placeholder="Enter Vechile Mileage" name="v-mileage" id="psw-repeat" required>
+                                  <input type="text" placeholder="Enter Vechile Mileage" name="vechile_mileage" id="psw-repeat" required>
                                 </div>
                                 <div class="col-lg-4">
                                   <label for="v-number"><b>Vechile Number</b></label>
-                                  <input type="text" placeholder="Enter Vechile Number" name="v-number" id="psw-repeat" required>
+                                  <input type="text" placeholder="Enter Vechile Number" name="vechile_number" id="psw-repeat" required>
                                 </div>
                               </div>
                               
@@ -337,13 +335,13 @@
                                   <div class="col-sm-6">
                                     <div class="well">
                                       <label for="s-name"><b>Street Name</b></label>
-                                      <input type="text" placeholder="Enter Street Name" name="s-name" id="psw-repeat" required>
+                                      <input type="text" placeholder="Enter Street Name" name="street_name" id="psw-repeat" required>
                                    
                                       <label for="h-number"><b>House Number</b></label>
-                                      <input type="text" placeholder="Enter House Number" name="h-number" id="psw-repeat" required>
+                                      <input type="text" placeholder="Enter House Number" name="house_number" id="psw-repeat" required>
                                       
                                       <label for="image"><b>Upload Your Image</b></label>
-                                      <input type="file" name="user-image" onchange="preview(event)">
+                                      <input type="file" name="user_image" onchange="preview(event)">
                                       
                                     </div>
                                   </div>
@@ -365,7 +363,7 @@
                         <div class="col-sm-6" style="background-color:rgb(34, 34, 23);">
                           <div class="drop-zone" style="margin-top: 250px;">
                             <span class="drop-zone__prompt">Drop file here or click to upload<br> Vehile Image</span>
-                            <input type="file" name="myFile" class="drop-zone__input">
+                            <input type="file" name="vechile_image" class="drop-zone__input">
                           </div>
                         </div>
                       </div>
@@ -393,7 +391,7 @@
                   document.write(new Date().getFullYear())
                 </script>,
                 made with <i class="fa fa-heart"></i> by
-                <a href="#" class="font-weight-bold" target="_blank">Codebook.in</a>
+                <a href="#" class="font-weight-bold" target="_blank">Zentora Info Global Solution</a>
                 for a better web.
               </div>
             </div>
